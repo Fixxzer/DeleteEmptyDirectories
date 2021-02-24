@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeleteEmptyDirectories": {
+      "commandName": "Project",
+      "commandLineArgs": "del"
+    }
+  }
+}
