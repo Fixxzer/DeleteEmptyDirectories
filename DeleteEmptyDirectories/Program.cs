@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace DeleteEmptyDirectories
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             string dir = Directory.GetCurrentDirectory();
 
@@ -26,10 +26,8 @@ namespace DeleteEmptyDirectories
                 Console.WriteLine("Processing complete.");
             }
 
-#if DEBUG
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
-#endif
         }
 
         private static void ProcessDirectory(string startLocation, string command)
@@ -38,7 +36,6 @@ namespace DeleteEmptyDirectories
             {
                 ProcessDirectory(directory, command);
 
-                // Note: the Console.WriteLine will not capture the root folder, because it is not empty.  The del will however, because it will be empty when the check occurs.
                 if (!Directory.EnumerateFileSystemEntries(directory).Any())
                 {
                     switch (command)
@@ -48,6 +45,7 @@ namespace DeleteEmptyDirectories
                             Directory.Delete(directory, false);
                             break;
                         default:
+                            // Note: the Console.WriteLine will not capture the root folder, because it is not empty.  The del will however, because it will be empty when the check occurs.
                             Console.WriteLine(directory);
                             break;
                     }
